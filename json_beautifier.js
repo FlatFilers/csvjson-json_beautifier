@@ -109,13 +109,15 @@
   };
 
   // CommonJS or Browser
+  var JSON2_mod;
   if (typeof exports !== 'undefined') {
       if (typeof module !== 'undefined' && module.exports) {
           exports = module.exports = convert;
       }
-      var JSON2_mod = require('json2-mod');
+      JSON2_mod = require('json2-mod');
       exports.json_beautifier = convert;
   } else {
+    JSON2_mod = window.JSON2_mod;
     this.CSVJSON || (this.CSVJSON = {});
     this.CSVJSON.json_beautifier = convert;
   }
