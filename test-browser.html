@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>CSVJSON's json_beautifier Test</title>
+</head>
+<body>
+  <h1>CSVJSON's json_beautifier Test</h1>
+
+  <h2>Test</h2>
+  <pre>const object = {"pi": "3.14159265359", "e": "2.7182818284", "prime": [2, 3, 5, 7, 11, 13, 17, 19], "1+6": 7};
+
+const json = CSVJSON.json_beautifier(object, {dropQuotesOnNumbers: true, inlineShortArrays: true});</pre>
+
+  <h2>Expected</h2>
+  <pre id="expected">{
+  "pi": 3.14159265359,
+  "e": 2.7182818284,
+  "prime": [ 2, 3, 5, 7, 11, 13, 17, 19 ],
+  "1+6": 7
+}</pre>
+
+  <h2>Execution</h2>
+  <pre id="execution"></pre>
+
+  <h2>Test Result</h2>
+  <p id="result"></p>
+
+  <script type="text/javascript" src="node_modules/json2-mod/json2-mod.js"></script>
+  <script type="text/javascript" src="json_beautifier.js"></script>
+  <script>
+    (function() {
+      const object = {"pi": "3.14159265359", "e": "2.7182818284", "prime": [2, 3, 5, 7, 11, 13, 17, 19], "1+6": 7};
+      const json = CSVJSON.json_beautifier(object, {dropQuotesOnNumbers: true, inlineShortArrays: true});
+      const expected = document.getElementById('expected').innerText;
+
+      const execution = document.getElementById('execution');
+      const result = document.getElementById('result');
+      execution.innerText = json;
+      if (json === expected) {
+        result.innerText = 'Success!';
+      } else {
+        result.innerText = 'Failed.';
+      }
+    }.call(this));
+  </script>
+</body>
+</html>
